@@ -1,0 +1,58 @@
+{% extends "index.html" %}
+{% block content %}
+{% load static %}
+<div class="d-flex justify-content-center align-items-center" style="min-height: calc(100vh - 100px);">
+    <div class="col-md-8 col-lg-6">
+        <div class="card shadow-sm">
+            <div class="card-body">
+                <h3 class="text-primary text-center mb-4">User Details</h3>
+                <table class="table table-bordered text-center">
+                    <tr>
+                        <th>User Name</th>
+                        <td>{{ user.username }}</td>
+                    </tr>
+                    <tr>
+                        <th>Email</th>
+                        <td>{{ user.email }}</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    body {
+        background-image: url("{% static 'images/login.jpg' %}");
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+    }
+    .d-flex {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+    }
+    .col-md-8 {
+        padding-left: 0;
+        padding-right: 0;
+    }
+    .card {
+        background-color: rgba(255, 255, 255, 0.9);
+        border-radius: 8px;
+        width: 100%;
+    }
+    .table {
+        margin: 0;
+    }
+    .table th, .table td {
+        color: #000;
+        font-weight: bold;
+    }
+    .table th {
+        width: 40%;
+    }
+</style>
+{% endblock %}

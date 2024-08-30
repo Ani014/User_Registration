@@ -1,0 +1,47 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'bootstrap-3.4.1-dist/bootstrap-3.4.1-dist/css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/stylee.css' %}">
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <title>{% block title %}User Registration{% endblock %}</title>
+</head>
+<body>
+
+<nav class="navbar navbar-inverse navbar-fixed-top color">
+    <div class="container">
+        <div class="navbar-header">
+            <a href="#" class="navbar-brand"><i class="fa fa-users"> User Registration </i></a>
+        </div>
+        <ul class="nav navbar-nav navbar-right">
+            <li><a href="{% url 'Home' %}"><i class="fa fa-home">Home</i></a></li>
+             {% if user.is_authenticated %}
+                <li><a href="{% url 'Profile' %}"><i class="fa fa-user"> Profile</i></a></li>
+                <li>
+                    <form action="{% url 'Logout' %}" method="POST" style="display: inline;">
+                        {% csrf_token %}
+                        <button type="submit" class="btn btn-link navbar-btn"><i class="fa fa-sign-out"> Logout</i></button>
+                    </form>
+                </li>
+            {% else %}
+                <li><a href="{% url 'Login' %}"><i class="fa fa-user"> Login</i></a></li>
+                <li><a href="{% url 'Register' %}"><i class="fa fa-users"> Register</i></a></li>
+            {% endif %}
+        </ul>
+    </div>
+</nav>
+
+{% block content %}
+{% endblock %}
+<script>
+    $(document).ready(function(){
+        $(".alert").delay(4000).slideUp(400);
+    });
+</script>
+
+</body>
+</html>

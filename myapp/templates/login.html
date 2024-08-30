@@ -1,0 +1,43 @@
+{% extends "index.html" %}
+{% block content %}
+{% load crispy_forms_tags %}
+{% load static %}
+<style>
+    body {
+        background-image: url("{% static 'images/bb.jpg' %}");
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+    }
+    /* Remove the bottom border from the page header */
+    .page-header {
+        border-bottom: none;
+        padding-bottom: 3px; /* Optional: Adjust padding if needed */
+    }
+</style>
+<div class="container-fluid" style="margin-top: 100px;">
+    <h2 class="page-header text-primary text-center">User Login</h2>
+    <div class="col-md-offset-4 col-md-4 well">
+        {% if messages %}
+            {% for message in messages %}
+                <div class="alert alert-{{ message.tags }}">
+                    {{ message }}
+                </div>
+            {% endfor %}
+        {% endif %}
+        <form method="POST" action="{% url 'Login' %}" autocomplete="off">
+            {% csrf_token %}
+            {{ form|crispy }}
+            <center>
+                <button type="submit" class="btn btn-primary">Login</button>
+            </center>
+        </form>
+        <center>
+            <div>
+                <a href="{% url 'Register'%}">Sign-Up Now</a>
+            </div>
+        </center>
+    </div>
+</div>
+{% endblock %}

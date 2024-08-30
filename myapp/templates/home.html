@@ -1,0 +1,53 @@
+{% extends "index.html" %}
+{% load static %}
+{% block content %}
+    <style>
+        .background-authenticated {
+            background-image: url("{% static 'images/pic.jpg' %}");
+        }
+        .background-unauthenticated {
+            background-image: url("{% static 'images/cc.jpg' %}");
+        }
+        .background {
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            padding: 100px 0;
+            text-align: center;
+            height: 100vh; /* Ensure full viewport height */
+        }
+        .welcome-heading {
+            font-size: 3rem;
+            color: #ffffff;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+            font-family: 'Poppins', sans-serif;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin: 0;
+            padding: 20px;
+            background-color: rgba(0, 0, 0, 0.5);
+            display: inline-block;
+            border-radius: 40px;
+            animation: fadeIn 2s ease-in-out;
+        }
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+    </style>
+
+    <div class="background {% if user.is_authenticated %}background-authenticated{% else %}background-unauthenticated{% endif %}">
+        <h1 class="welcome-heading">
+            {% if user.is_authenticated %}
+                Welcome, {{ user.username }}!
+            {% else %}
+                Welcome Back!
+            {% endif %}
+        </h1>
+    </div>
+{% endblock %}
